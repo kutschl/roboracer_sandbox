@@ -10,6 +10,7 @@ nano
 vim
 libglfw3
 libglfw3-dev
+virtualenvwrapper
 
 ros-humble-asio-cmake-module
 ros-humble-diagnostic-updater

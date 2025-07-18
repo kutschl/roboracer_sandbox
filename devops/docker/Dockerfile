@@ -29,8 +29,6 @@ ADD devops/docker/install_req/python_req.txt /tmp/.install_utils/python_req.txt
 RUN pip3 install -r /tmp/.install_utils/python_req.txt &&\
     pip3 install quadprog~=0.1.11 virtualenv
 
-RUN apt-get install virtualenvwrapper -y
-
 RUN rm -rf /var/lib/apt/lists/*
 
 # Foxglove websocket port

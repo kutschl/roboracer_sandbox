@@ -1,7 +1,14 @@
 TODOS:
 - docker cli script -> larace beibehalten!
 
-INSIGHTS: 
+SETUP: 
 foxglove
 - socket als ros package in container
 - außerhalb container foxglover studio + anmelden 
+- port 8765
+
+f1tenth_gym
+dev-dynamics branch HEAD detached at d661c00
+
+f1tenth gym ros 
+dev-dynamics branch 
