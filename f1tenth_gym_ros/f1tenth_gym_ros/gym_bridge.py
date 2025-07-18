@@ -38,6 +38,9 @@ import gymnasium as gym
 import numpy as np
 from transforms3d import euler
 
+import os 
+from ament_index_python import get_package_share_directory
+
 import pathlib
 from f1tenth_gym.envs.f110_env import F110Env, Track
 
@@ -58,7 +61,7 @@ class GymBridge(Node):
         self.declare_parameter('scan_distance_to_base_link')
         self.declare_parameter('scan_fov')
         self.declare_parameter('scan_beams')
-        self.declare_parameter('map_path')
+        self.declare_parameter('map_name')
         self.declare_parameter('map_img_ext')
         self.declare_parameter('num_agent')
         self.declare_parameter('sx')
@@ -91,9 +94,8 @@ class GymBridge(Node):
         scale = self.get_parameter('scale').value
 
         # Split the path and the name
-        path = self.get_parameter('map_path').value
-        name = path.split('/')[-1].split('.')[0]
-        path = path + '.yaml'
+        name = self.get_parameter('map_name').value
+        path = os.path.join(get_package_share_directory('f1tenth_gym_ros'), 'maps', f'{name}.yaml')
         self.get_logger().info('Loading map: %s from path: %s' % (name, path))
 
         # Load the yaml file

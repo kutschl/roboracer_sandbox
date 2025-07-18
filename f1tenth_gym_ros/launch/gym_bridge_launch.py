@@ -26,6 +26,9 @@ from launch.substitutions import Command
 from ament_index_python.packages import get_package_share_directory
 import os
 import yaml
+from pathlib import Path
+
+home = str(Path.home())
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -42,7 +45,9 @@ def generate_launch_description():
         package='f1tenth_gym_ros',
         executable='gym_bridge',
         name='bridge',
-        parameters=[config]
+        parameters=[config],
+        prefix=[os.path.join(home, '.virtualenvs/gym_env/bin/python3')]
+
     )
     rviz_node = Node(
         package='rviz2',
@@ -52,7 +57,9 @@ def generate_launch_description():
     )
 
     # Create custom yaml file for map server by copying the original yaml file and scaling the resolution by the sim.yaml scale
-    with open(config_dict['bridge']['ros__parameters']['map_path'] + '.yaml', 'r') as file:
+    map_name = config_dict['bridge']['ros__parameters']['map_name']
+    map_path = os.path.join(get_package_share_directory('f1tenth_gym_ros'), 'maps', f'{map_name}.yaml')
+    with open(map_path) as file:
         map_yaml = yaml.safe_load(file)
     map_yaml['resolution'] *= config_dict['bridge']['ros__parameters']['scale']
     origin = map_yaml['origin']
@@ -78,11 +85,11 @@ def generate_launch_description():
     with open(temp_yaml_path, 'w') as file:
         yaml.dump(map_yaml, file)
 
-    # Copy the map image to the temporary directory
-    map_image_path = os.path.join(config_dict['bridge']['ros__parameters']['map_path'] + config_dict['bridge']['ros__parameters']['map_img_ext'])
-    with open(temp_img_path, 'wb') as file:
-        with open(map_image_path, 'rb') as img_file:
-            file.write(img_file.read())
+    # # Copy the map image to the temporary directory
+    # map_image_path = os.path.join(config_dict['bridge']['ros__parameters']['map_path'] + config_dict['bridge']['ros__parameters']['map_img_ext'])
+    # with open(temp_img_path, 'wb') as file:
+    #     with open(map_image_path, 'rb') as img_file:
+    #         file.write(img_file.read())
 
     map_server_node = Node(
         package='nav2_map_server',

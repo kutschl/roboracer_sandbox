@@ -16,11 +16,12 @@ docker run --tty -it \
     --volume /dev:/dev \
     --volume /tmp/.X11-unix:/tmp/.X11-unix \
     --restart unless-stopped \
-    --volume $ROBORACER_SANDBOX_ROOT/../cache/roboracer_sandbox/build:/home/$USER/roboracer_sandbox/build \
-    --volume $ROBORACER_SANDBOX_ROOT/../cache/roboracer_sandbox/install:/home/$USER/roboracer_sandbox/install \
-    --volume $ROBORACER_SANDBOX_ROOT/../cache/roboracer_sandbox/log:/home/$USER/roboracer_sandbox/log \
-    --volume $ROBORACER_SANDBOX_ROOT:/home/$USER/roboracer_sandbox/src/ \
+    --volume $ROBORACER_SANDBOX_ROOT/../cache/roboracer_sandbox/build:/home/$USER/ws/build \
+    --volume $ROBORACER_SANDBOX_ROOT/../cache/roboracer_sandbox/install:/home/$USER/ws/install \
+    --volume $ROBORACER_SANDBOX_ROOT/../cache/roboracer_sandbox/log:/home/$USER/ws/log \
+    --volume $ROBORACER_SANDBOX_ROOT:/home/$USER/ws/src/ \
     --privileged \
     --name roboracer_sandbox \
     --entrypoint /bin/bash \
+    -p 8765:8765 \
     ${IMAGE}:humble

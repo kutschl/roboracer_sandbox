@@ -29,6 +29,13 @@ ADD devops/docker/install_req/python_req.txt /tmp/.install_utils/python_req.txt
 RUN pip3 install -r /tmp/.install_utils/python_req.txt &&\
     pip3 install quadprog~=0.1.11 virtualenv
 
+RUN apt-get install virtualenvwrapper -y
+
+RUN rm -rf /var/lib/apt/lists/*
+
+# Foxglove websocket port
+EXPOSE 8765
+
 
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
@@ -36,6 +43,7 @@ RUN pip3 install -r /tmp/.install_utils/python_req.txt &&\
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
 
+# Bashrc extension
 ADD devops/docker/bashrc/ /tmp/.install_utils/
 RUN echo "export USERNAME=$USERNAME" >> /home/$USERNAME/.bashrc &&\
     cat /tmp/.install_utils/bashrc_extension.sh >> /home/$USERNAME/.bashrc

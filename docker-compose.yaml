@@ -12,3 +12,5 @@ services:
       - ROS_LOCALHOST_ONLY=0
     tty: true
     network_mode: host
+    ports:
+      - "8765:8765"

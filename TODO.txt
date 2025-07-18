@@ -1,3 +1,7 @@
-- foxglove 
-- install requirements 
+TODOS:
 - docker cli script -> larace beibehalten!
+
+INSIGHTS: 
+foxglove
+- socket als ros package in container
+- außerhalb container foxglover studio + anmelden 
