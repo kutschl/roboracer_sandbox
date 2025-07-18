@@ -1,0 +1,3 @@
+- foxglove 
+- install requirements 
+- docker cli script -> larace beibehalten!

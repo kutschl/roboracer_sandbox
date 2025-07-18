@@ -1,0 +1,14 @@
+services:
+  roboracer_sandbox:
+    build:
+      context: .
+      dockerfile: devops/docker/Dockerfile
+      args:
+        - USERNAME=${USER}
+        - UID=${UID}
+        - GID=${GID}
+    image: roboracer_sandbox:humble
+    environment:
+      - ROS_LOCALHOST_ONLY=0
+    tty: true
+    network_mode: host
