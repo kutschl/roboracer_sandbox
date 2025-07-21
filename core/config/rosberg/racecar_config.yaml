@@ -1,0 +1,5 @@
+general:
+  racecar_version: rosberg
+  ros_domain_id: 6
+  ip: 192.168.1.6
+

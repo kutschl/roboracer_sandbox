@@ -59,31 +59,31 @@ def generate_launch_description():
     # Create custom yaml file for map server by copying the original yaml file and scaling the resolution by the sim.yaml scale
     map_name = config_dict['bridge']['ros__parameters']['map_name']
     map_path = os.path.join(get_package_share_directory('f1tenth_gym_ros'), 'maps', f'{map_name}.yaml')
-    with open(map_path) as file:
-        map_yaml = yaml.safe_load(file)
-    map_yaml['resolution'] *= config_dict['bridge']['ros__parameters']['scale']
-    origin = map_yaml['origin']
-    scaled_origin = (
-        origin[0] * config_dict['bridge']['ros__parameters']['scale'],
-        origin[1] * config_dict['bridge']['ros__parameters']['scale'],
-        origin[2],
-    )
-    map_yaml['origin'] = scaled_origin
-    map_yaml['image'] = 'scaled_map' + config_dict['bridge']['ros__parameters']['map_img_ext']
+    # with open(map_path) as file:
+    #     map_yaml = yaml.safe_load(file)
+    # map_yaml['resolution'] *= config_dict['bridge']['ros__parameters']['scale']
+    # origin = map_yaml['origin']
+    # scaled_origin = (
+    #     origin[0] * config_dict['bridge']['ros__parameters']['scale'],
+    #     origin[1] * config_dict['bridge']['ros__parameters']['scale'],
+    #     origin[2],
+    # )
+    # map_yaml['origin'] = scaled_origin
+    # map_yaml['image'] = 'scaled_map' + config_dict['bridge']['ros__parameters']['map_img_ext']
 
-    temp_yaml_path = None
+    # temp_yaml_path = None
     # Create a temporary directory to store the scaled map yaml and image
     # Create a temporary directory to store the scaled map yaml and image in the same location as the script
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    temp_dir = os.path.join(script_dir, 'temp')
-    os.makedirs(temp_dir, exist_ok=True)
+    # script_dir = os.path.dirname(os.path.abspath(__file__))
+    # temp_dir = os.path.join(script_dir, 'temp')
+    # os.makedirs(temp_dir, exist_ok=True)
 
-    temp_yaml_path = os.path.join(temp_dir, 'scaled_map.yaml')
-    temp_img_path = os.path.join(temp_dir, 'scaled_map' + config_dict['bridge']['ros__parameters']['map_img_ext'])
+    # temp_yaml_path = os.path.join(temp_dir, 'scaled_map.yaml')
+    # temp_img_path = os.path.join(temp_dir, 'scaled_map' + config_dict['bridge']['ros__parameters']['map_img_ext'])
 
     # Write the scaled map yaml to the temporary file
-    with open(temp_yaml_path, 'w') as file:
-        yaml.dump(map_yaml, file)
+    # with open(temp_yaml_path, 'w') as file:
+    #     yaml.dump(map_yaml, file)
 
     # # Copy the map image to the temporary directory
     # map_image_path = os.path.join(config_dict['bridge']['ros__parameters']['map_path'] + config_dict['bridge']['ros__parameters']['map_img_ext'])
@@ -94,7 +94,7 @@ def generate_launch_description():
     map_server_node = Node(
         package='nav2_map_server',
         executable='map_server',
-        parameters=[{'yaml_filename': temp_yaml_path},
+        parameters=[{'yaml_filename': map_path},
                     {'topic': 'map'},
                     {'frame_id': 'map'},
                     {'output': 'screen'},

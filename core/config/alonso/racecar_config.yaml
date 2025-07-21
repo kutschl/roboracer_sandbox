@@ -1,0 +1,5 @@
+general:
+  racecar_version: alonso
+  ros_domain_id: 14
+  ip: 192.168.1.14
+

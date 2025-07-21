@@ -1,0 +1,5 @@
+general:
+  racecar_version: vettel
+  ros_domain_id: 5
+  ip: 192.168.1.5
+

@@ -1,0 +1,5 @@
+general:
+  racecar_version: leclerc
+  ros_domain_id: 16
+  ip: 192.168.1.16
+

@@ -23,5 +23,4 @@ docker run --tty -it \
     --privileged \
     --name roboracer_sandbox \
     --entrypoint /bin/bash \
-    -p 8765:8765 \
     ${IMAGE}:humble
