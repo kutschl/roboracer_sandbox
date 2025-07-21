@@ -1,0 +1,45 @@
+--------------------------------------------
+ENVIRONMENT SHELL
+--------------------------------------------
+- outside env.sh mit docker nur 
+- docker env.sh ohne docker 
+- remove select_car select_map 
+- install shell erstellen
+- dockerfile mit ports 
+- docker scripts anpassen/vergleichen 
+
+--------------------------------------------
+CORE
+--------------------------------------------
+- update core setup.py 
+- foxglove launches erstellen 
+
+--------------------------------------------
+PLANNER GUI 
+--------------------------------------------
+- addiere COLCON_IGNORE 
+
+
+--------------------------------------------
+GITIGNORE 
+--------------------------------------------
+
+build/*
+install/*
+log/*
+
+cache/*
+
+*.egg-info
+
+__pycache__
+
+lap_time_matrix.csv
+
+
+--------------------------------------------
+FOXGLOVE 
+--------------------------------------------
+- socket als ros package in container
+- außerhalb container foxglover studio + anmelden 
+- port 8765 in dockerfile

@@ -24,18 +24,12 @@ PARAMETERS
     
 
 IDEE
-bei setup.py in core erstelle dann automatisch dass die ini datei für das install dir erstellt wird -> am einfachsten!
--> nutze immer larace car version für die params die ich lade im planner gui ! 
+bei setup.py in core erstelle dann automatisch dass die ini datei für das install dir erstellt wird -> am einfachsten
+-> nutze immer larace car version für die params die ich lade im planner gui 
+-> überschreibe nur die paar relevanten params
 
-
-----------------------------------------------------------------------------
-----------------------------------------------------------------------------
 
 SETUP: 
-foxglove
-- socket als ros package in container
-- außerhalb container foxglover studio + anmelden 
-- port 8765 in dockerfile
 
 f1tenth_gym
 dev-dynamics branch HEAD detached at d661c00
