@@ -95,29 +95,34 @@ function select_car() {
             vettel|rosberg|leclerc|alonso)
                 CONFIG_FILE="$LARACE_ROOT/src/core/config/$CAR_VERSION/racecar_config.yaml"
                 ROS_DOMAIN_ID=$(_larace_get_yaml $CONFIG_FILE general.ros_domain_id)
-                echo $ROS_DOMAIN_ID
+
+                if grep -q "export LARACE_CAR_VERSION=" ~/.bashrc; then
+                    sed -i.bak "s|^export LARACE_CAR_VERSION=.*|export LARACE_CAR_VERSION=${CAR_VERSION}|" "$BASHRC_FILE"
+                else
+                    echo "export LARACE_CAR_VERSION=$CAR_VERSION" >> ~/.bashrc
+                fi
+
+                if grep -q "export ROS_DOMAIN_ID=" ~/.bashrc; then
+                    sed -i.bak "s|^export ROS_DOMAIN_ID=.*|export ROS_DOMAIN_ID=${ROS_DOMAIN_ID}|" "$BASHRC_FILE"
+                else
+                    echo "export ROS_DOMAIN_ID=$ROS_DOMAIN_ID" >> ~/.bashrc
+                fi
+
+                source ~/.bashrc > /dev/null 2>&1
+
+                echo "LARACE_CAR_VERSION: ${CAR_VERSION}"
+                echo "ROS_DOMAIN_ID: ${ROS_DOMAIN_ID}"
                 ;;
-            localhost|*)
-                ROS_DOMAIN_ID=0
+            help | *)
+                echo "Car name not recognized. Available car names:"
+                echo "  alonso"
+                echo "  leclerc"
+                echo "  rosberg"
+                echo "  vettel"
                 ;;
             esac
 
-        if grep -q "export LARACE_CAR_VERSION=" ~/.bashrc; then
-            sed -i.bak "s|^export LARACE_CAR_VERSION=.*|export LARACE_CAR_VERSION=${CAR_VERSION}|" "$BASHRC_FILE"
-        else
-            echo "export LARACE_CAR_VERSION=$CAR_VERSION" >> ~/.bashrc
-        fi
-
-        if grep -q "export ROS_DOMAIN_ID=" ~/.bashrc; then
-            sed -i.bak "s|^export ROS_DOMAIN_ID=.*|export ROS_DOMAIN_ID=${ROS_DOMAIN_ID}|" "$BASHRC_FILE"
-        else
-            echo "export ROS_DOMAIN_ID=$ROS_DOMAIN_ID" >> ~/.bashrc
-        fi
-
-        source ~/.bashrc > /dev/null 2>&1
-
-        echo "LARACE_CAR_VERSION: ${CAR_VERSION}"
-        echo "ROS_DOMAIN_ID: ${ROS_DOMAIN_ID}"
+        
     fi
 }
 
