@@ -1,5 +1,4 @@
 TODOS:
-- docker cli script -> larace beibehalten!
 - core setup.py schreiben
 - core/configs -> racecars with tfs, sensors (imu, laserscanner)
 
