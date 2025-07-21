@@ -1,7 +1,35 @@
-TODOS:
-- core setup.py schreiben
-- core/configs -> racecars with tfs, sensors (imu, laserscanner)
+----------------------------------------------------------------------------
+GLOBAL PLANNER 
+----------------------------------------------------------------------------
 
+PARAMETERS 
+    CAR SPECIFIC:
+        >>> .csv files in config/car_version/*.csv
+        ggv_file="ggv.csv"
+        ax_max_machines_file="ax_max_machines.csv"
+
+        >>> use params from racecar_configs.yaml
+            v_max, length, width, mass, dragcoeffm curvlim (alles außer g)
+        veh_params = {"v_max": 70.0,
+                    "length": 4.7,
+                    "width": 2.0,
+                    "mass": 1200.0,
+                    "dragcoeff": 0.75,
+                    "curvlim": 0.12,
+                    "g": 9.81}
+
+
+    GLOBAL PLANNER GENERAL  
+        >>> use global_planner.ini
+    
+
+IDEE
+bei setup.py in core erstelle dann automatisch dass die ini datei für das install dir erstellt wird -> am einfachsten!
+-> nutze immer larace car version für die params die ich lade im planner gui ! 
+
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 SETUP: 
 foxglove

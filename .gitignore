@@ -3,3 +3,9 @@ install/*
 log/*
 
 cache/*
+
+*.egg-info
+
+__pycache__
+
+lap_time_matrix.csv
